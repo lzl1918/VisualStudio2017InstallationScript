@@ -1,4 +1,6 @@
+Import-Module "vstype.ps1"
 Add-Type -AssemblyName mscorlib
+
 function Get-VisualStudioPackages([string]$channel) {
     $url = "https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-$channel"
 
@@ -26,7 +28,7 @@ function Get-VisualStudioPackages([string]$channel) {
     }
     $contents.RemoveAt(0)
     [System.Text.StringBuilder]$stb = New-Object System.Text.StringBuilder
-    [regex]$contentReg = New-Object regex "<td>(?'id'[^<]*)</td>\s*<td>(?'name'[^<]*)</td>(\s*<td>(?'type'[^<]*)</td>)?"
+    [regex]$contentReg = New-Object regex "<td>(?'id'[^<]*)</td>\s*<td>(?'name'[^<]*)</td>\s*<td>(?'version'[^<]*)</td>(\s*<td>(?'type'[^<]*)</td>)?"
 
     [string]$title=''
     [System.Text.RegularExpressions.Match]$titleMatch = $null
@@ -74,5 +76,5 @@ function Get-VisualStudioPackages([string]$channel) {
         }
     }
 }
-
-Get-VisualStudioPackages "professional" | Out-File packages.txt
+$type = Get-VSType
+Get-VisualStudioPackages $type | Out-File packages.txt
