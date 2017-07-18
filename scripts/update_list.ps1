@@ -1,5 +1,4 @@
-Import-Module "vstype.ps1"
-Add-Type -AssemblyName mscorlib
+$type = .\vstype.ps1
 
 function Get-VisualStudioPackages([string]$channel) {
     $url = "https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-$channel"
@@ -78,3 +77,4 @@ function Get-VisualStudioPackages([string]$channel) {
 }
 $type = Get-VSType
 Get-VisualStudioPackages $type | Out-File packages.txt
+Write-Output "[$type] components saved into packages.txt"

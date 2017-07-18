@@ -1,5 +1,5 @@
-Import-Module "vstype.ps1"
-$type = Get-VSType
+$type = .\vstype.ps1
+
 function Contact([System.Collections.Generic.IEnumerable[object]]$str_list) {
 	[System.Text.StringBuilder]$builder = New-Object System.Text.StringBuilder
 	foreach($str in $str_list) {

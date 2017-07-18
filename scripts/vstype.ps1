@@ -1,4 +1,3 @@
-function Get-VSType()
-{
-    return "enterprise"
-}
+# return "community"
+# return "professional"
+return "enterprise"

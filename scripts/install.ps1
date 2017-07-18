@@ -1,4 +1,3 @@
-Import-Module "vstype.ps1"
-$type = Get-VSType
+$type = .\vstype.ps1
 $path = $pwd.Path + "\vs2017\vs_$type.exe"
 & $path
